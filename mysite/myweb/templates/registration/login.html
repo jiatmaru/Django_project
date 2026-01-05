@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ログイン</title>
+    <style>
+        /* 画面全体の背景設定（ピカチュウ） */
+        body {
+            background-image: url("{% static 'images/4276157168-suffin_pika-rRKK-1600x900-MM-100.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: sans-serif; /* フォントを少しきれいに */
+        }
+
+        /* 白い箱のデザイン */
+        .login-box {
+            background-color: rgba(255, 255, 255, 0.95); /* 透明度を少し下げて見やすく */
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 320px;
+            transform: translateY(-100px);
+        }
+
+        h2 { color: #333; margin-bottom: 25px; }
+
+        /* 入力欄のデザイン調整 */
+        p { margin-bottom: 15px; text-align: left; }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box; /* 枠線を含めて幅を計算 */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* ログインボタン */
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #FFCB05;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 16px;
+            color: #333;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover { background-color: #E6B800; }
+
+        /* 区切り線 */
+        hr { margin: 25px 0; border: none; border-top: 1px solid #eee; }
+
+
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h2>ログイン</h2>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <p>
+                    {{ field.label_tag }}<br>
+                    {{ field }}
+                </p>
+            {% endfor %}
+            <button type="submit">ログインする</button>
+        </form>
+    </div>
+</body>
+</html>
